@@ -13,15 +13,49 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         title: Text("Chapter1"),
         backgroundColor: Colors.red,
       ),
       body: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.green,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Card(
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/pebs.jpg",
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Text(
+                    "In 2073's final match.\nWon by 5 runs.",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: "Enter the winner team's name",
+                      labelText: "Enter the winner team's name",
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  Image.asset(
+                    "assets/pebs.jpg",
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
       drawer: Drawer(
