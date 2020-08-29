@@ -9,7 +9,15 @@ void main() {
   );
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var myAnswer = 'Answer the questions?';
+  TextEditingController _nameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +40,7 @@ class HomePage extends StatelessWidget {
                     height: 50,
                   ),
                   Text(
-                    "In 2073's final match.\nWon by 5 runs.",
+                    "\nWhich team won the 2073's final match won by 5 runs?\n$myAnswer",
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
@@ -43,6 +51,7 @@ class HomePage extends StatelessWidget {
                     height: 50,
                   ),
                   TextField(
+                    controller: _nameController,
                     decoration: InputDecoration(
                       hintText: "Enter the winner team's name",
                       labelText: "Enter the winner team's name",
@@ -51,6 +60,28 @@ class HomePage extends StatelessWidget {
                   ),
                   Image.asset(
                     "assets/pebs.jpg",
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Text(
+                    "\nWhich team won the 2074's final match won by 4 wickets?\n$myAnswer",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  TextField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      hintText: "Enter the winner team's name",
+                      labelText: "Enter the winner team's name",
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ],
               ),
@@ -101,8 +132,11 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.favorite),
+        onPressed: () {
+          myAnswer = _nameController.text;
+          setState(() {});
+        },
+        child: Icon(Icons.send),
       ),
     );
   }
