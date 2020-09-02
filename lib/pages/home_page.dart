@@ -1,4 +1,5 @@
 import 'package:chapter1/drawer.dart';
+import 'package:chapter1/pages/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
@@ -35,6 +36,15 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.grey,
       appBar: AppBar(
         title: Text("HomePage/Json Data"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              Constants.prefs.setBool("loggedIn", false);
+              Navigator.pushReplacementNamed(context, "/login");
+            },
+          )
+        ],
         backgroundColor: Colors.red,
       ),
       body: Center(

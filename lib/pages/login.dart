@@ -1,4 +1,5 @@
 import 'package:chapter1/pages/home_page.dart';
+import 'package:chapter1/pages/utils/constants.dart';
 import 'package:chapter1/widgets/bgImage.dart';
 import 'package:flutter/material.dart';
 
@@ -67,7 +68,9 @@ class _LogInPageState extends State<LogInPage> {
                           RaisedButton(
                             color: Colors.green,
                             onPressed: () {
-                              Navigator.pushNamed(context, "/home");
+                              Constants.prefs.setBool("loggedIn", true);
+
+                              Navigator.pushReplacementNamed(context, "/home");
                               // Navigator.push(
                               //     context,
                               //     MaterialPageRoute(
