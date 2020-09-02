@@ -1,3 +1,4 @@
+import 'package:chapter1/widgets/bgImage.dart';
 import 'package:flutter/material.dart';
 
 class ChangeName extends StatelessWidget {
@@ -16,9 +17,7 @@ class ChangeName extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          Image.asset(
-            "assets/pebs.jpg",
-          ),
+          BgImage(),
           SizedBox(
             height: 50,
           ),

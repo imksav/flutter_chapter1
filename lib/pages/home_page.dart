@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text("Chapter1"),
+        title: Text("HomePage/Json Data"),
         backgroundColor: Colors.red,
       ),
       body: Center(
