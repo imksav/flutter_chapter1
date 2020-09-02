@@ -1,6 +1,8 @@
 import 'package:chapter1/drawer.dart';
-import 'package:chapter1/widgets/changeName.dart';
 import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,8 +10,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var myAnswer = 'Answer the questions?';
   TextEditingController _nameController = TextEditingController();
+  var myAnswer = 'Answer the questions?';
+  var url = "https://jsonplaceholder.typicode.com/photos";
+  var data;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    var response = await http.get(url);
+
+    data = jsonDecode(response.body);
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +40,22 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child:
-                ChangeName(myAnswer: myAnswer, nameController: _nameController),
-          ),
+          child: data != null
+              ? ListView.builder(
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListTile(
+                        title: Text("ID: ${data[index]["id"]}"),
+                        subtitle: Text("Title: ${data[index]["title"]}"),
+                      ),
+                    );
+                  },
+                  itemCount: data.length,
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
+                ),
         ),
       ),
       drawer: MyDrawer(),
